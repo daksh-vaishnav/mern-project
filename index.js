@@ -1,6 +1,6 @@
 const app = require('express')()
 const dotenv = require("dotenv")
-const { router } = require("./routes")
+const { router } = require("./src/routes")
 dotenv.config({})
 
 
