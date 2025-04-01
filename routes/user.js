@@ -1,9 +1,10 @@
-const express = require("express")
+const userRouter = require("express").Router()
+const { signInController, signUpController, enrollCourseController, getAllCourseController } = require("../controller/userController")
 
-const router = express.Router()
+userRouter
+    .post("/signin", signInController)
+    .post("/signup", signUpController)
+    .post("/enroll", enrollCourseController)
+    .get("/get-course", getAllCourseController)
 
-router.post("/signin", (req, res) => {
-    res.json({message:"success"})
-})
-
-module.exports = router
+module.exports = { userRouter }

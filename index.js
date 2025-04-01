@@ -1,6 +1,6 @@
 const app = require('express')()
 const dotenv = require("dotenv")
-const routers = require("./routes")
+const { router } = require("./routes")
 dotenv.config({})
 
 
@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
     res.send("hello world")
 })
 
-app.use("/api/v1", routers)
+app.use("/api/v1", router)
 
 app.listen(PORT, () => {
     console.log(`server is running on port:${PORT}`);
