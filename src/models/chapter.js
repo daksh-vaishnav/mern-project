@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const courseSchema = new mongoose.Schema({
-    title: {
+const chapterSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true,
         trim: true
@@ -14,14 +14,9 @@ const courseSchema = new mongoose.Schema({
         type: String, // Assuming this is a URL
         required: true
     },
-    chapters: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Chapter'
-    }],
-    price: {
-        type: Number,
-        required: true,
-        min: 0
+    contents: {
+        type: String, // Assuming contents are stored as text or a URL to a content file
+        required: true
     },
     isActive: {
         type: Boolean,
@@ -29,4 +24,4 @@ const courseSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Course', courseSchema);
+module.exports = mongoose.model('Chapter', chapterSchema);
