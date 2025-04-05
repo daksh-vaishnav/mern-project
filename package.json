@@ -1,5 +1,5 @@
 {
-  "name": "course-selling-app",
+  "name": "coursemy",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -7,6 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "description": "",
@@ -17,9 +18,20 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
+  },
+  "imports": {
+    "#root/*": "./*.js",
+    "#src/*": "./src/*.js",
+    "#routes/*": "./src/routes/*.js",
+    "#models/*": "./src/models/*.js",
+    "#middlewares/*": "./src/middlewares/*.js",
+    "#helpers/*": "./src/helpers/*.js",
+    "#controllers/*": "./src/controllers/*.js",
+    "#config/*": "./src/config/*.js"
   }
 }

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const courseForumReplySchema = new mongoose.Schema({
     questionId: {
@@ -29,4 +29,4 @@ const courseForumReplySchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('CourseForumReply', courseForumReplySchema);
+export const CourseForumReply = mongoose.model('CourseForumReply', courseForumReplySchema);

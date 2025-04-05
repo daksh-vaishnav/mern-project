@@ -1,6 +1,9 @@
-const app = require('express')()
-const dotenv = require("dotenv")
-const { router } = require("./src/routes")
+import express from 'express';
+import dotenv from 'dotenv';
+import router from './src/routes/index.js';
+import { connectDB } from './src/config/db.js';
+
+const app = express();
 dotenv.config({})
 
 
@@ -14,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1", router)
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+    await connectDB()
     console.log(`server is running on port:${PORT}`);
 })

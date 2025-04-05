@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const purchaseCourseSchema = new mongoose.Schema({
     userId: {
@@ -32,4 +32,4 @@ const purchaseCourseSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('PurchaseCourse', purchaseCourseSchema);
+export const PurchaseCourse = mongoose.model('PurchaseCourse', purchaseCourseSchema);

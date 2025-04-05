@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const courseForumPostSchema = new mongoose.Schema({
     courseId: {
@@ -32,4 +32,4 @@ const courseForumPostSchema = new mongoose.Schema({
     }]
 }, { timestamps: true });
 
-module.exports = mongoose.model('CourseForumPost', courseForumPostSchema);
+export const CourseForumPost = mongoose.model('CourseForumPost', courseForumPostSchema);

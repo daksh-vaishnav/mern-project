@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const contentCommentSchema = new mongoose.Schema({
     userId: {
@@ -29,4 +29,4 @@ const contentCommentSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('ContentComment', contentCommentSchema);
+export const ContentComment = mongoose.model('ContentComment', contentCommentSchema);

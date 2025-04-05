@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const chapterSchema = new mongoose.Schema({
     name: {
@@ -24,4 +24,4 @@ const chapterSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Chapter', chapterSchema);
+export const Chapter = mongoose.model('Chapter', chapterSchema);

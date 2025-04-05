@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 // Define User Schema
 const userSchema = new mongoose.Schema(
@@ -53,9 +53,7 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 // Create Indexes for Performance
 userSchema.index({ email: 1 });
 
-const User = mongoose.model("User", userSchema);
-module.exports = User;
-
+export const User = mongoose.model("User", userSchema);
 
 // const User = require("./models/user");
 

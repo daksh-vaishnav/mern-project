@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const couponSchema = new mongoose.Schema({
     title: {
@@ -39,4 +39,4 @@ const couponSchema = new mongoose.Schema({
     }]
 }, { timestamps: true });
 
-module.exports = mongoose.model('Coupon', couponSchema);
+export const Coupon = mongoose.model('Coupon', couponSchema);

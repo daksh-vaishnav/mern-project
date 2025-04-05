@@ -1,5 +1,7 @@
-const adminRouter = require("express").Router()
-const { getAllCourseController, updateCourseController, signInController, signUpController, createCourseController } = require("../controllers/adminController")
+import { Router } from "express";
+import { getAllCourseController, updateCourseController, signInController, signUpController, createCourseController } from "#controllers/adminController";
+
+const adminRouter = Router();
 
 adminRouter
     .post("/signin", signInController)
@@ -8,4 +10,4 @@ adminRouter
     .post("/course", createCourseController)
     .patch("/course", updateCourseController)
 
-module.exports = { adminRouter }
+export default adminRouter

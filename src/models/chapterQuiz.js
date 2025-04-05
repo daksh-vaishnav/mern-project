@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Quiz Schema
 const quizSchema = new mongoose.Schema({
@@ -72,8 +72,6 @@ const userQuizAttemptSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = {
-    Quiz: mongoose.model('Quiz', quizSchema),
-    Question: mongoose.model('Question', questionSchema),
-    UserQuizAttempt: mongoose.model('UserQuizAttempt', userQuizAttemptSchema)
-};
+export const Quiz = mongoose.model('Quiz', quizSchema)
+export const Question = mongoose.model('Question', questionSchema)
+export const UserQuizAttempt = mongoose.model('UserQuizAttempt', userQuizAttemptSchema)
