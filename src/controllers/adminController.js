@@ -1,9 +1,36 @@
-export const signInController = (req, res) => {
-    res.json({ message: "admin sign in success" })
+import { User } from "#models/user";
+import { compareHashPassword, generateJWT, getHashPassword } from "#helpers/utils";
+
+export const signUpController = async (req, res) => {
+    const { name, email, password } = req.body
+    try {
+        const hashPass = await getHashPassword(password);
+        const admin = await User.create({ name, email, password: hashPass, role: "admin" })
+        res.status(200).json({ message: "admin user successfully created..." })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error, message: "something went wrong" })
+    }
 }
 
-export const signUpController = (req, res) => {
-    res.json({ message: "admin sign up success" })
+export const signInController = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const hashPass = await getHashPassword(password)
+        const admin = await User.findOne({ email }).select("+password");
+        const isMatched = await compareHashPassword(password, hashPass)
+        if (!isMatched) {
+            return res.status(500).json({ message: "Invalid Creds" })
+        }
+        const payload = { id: (await admin)._id.toString() }
+        const accessToken = await generateJWT(payload);
+        return res.status(200).json({ message: "success", accessToken })
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({ message: "something went wrong" })
+    }
+
 }
 
 export const createCourseController = (req, res) => {

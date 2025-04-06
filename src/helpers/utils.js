@@ -6,10 +6,11 @@ dotenv.config({})
 const JWT_SECRET_TEXT = process.env.JWT_SECRET || 'asdasd@ASAVSEYT@2564'
 const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_TEXT);
 const JWT_EXPIRE = process.env.JWT_EXPIRE || '7h'
-const SALT_ROUND = process.env.SALT_ROUND || 10
+const SALT_ROUND = parseInt(process.env.SALT_ROUND || 10)
 
 
-export const getHashPassowrd = async (password) => {
+
+export const getHashPassword = async (password) => {
     return await bcrypt.hash(password, SALT_ROUND);
 }
 

@@ -1,4 +1,4 @@
-import { compareHashPassword, generateJWT, getHashPassowrd } from "#helpers/utils";
+import { compareHashPassword, generateJWT, getHashPassword } from "#helpers/utils";
 import { User } from "#models/user";
 import { Error } from "mongoose";
 
@@ -7,7 +7,7 @@ import { Error } from "mongoose";
 export const signUpController = async (req, res) => {
     const { name, email, password } = req.body
     try {
-        const hashPassword = await getHashPassowrd(password);
+        const hashPassword = await getHashPassword(password);
         const user = await User.create({ name, email, password: hashPassword, role: "user" });
         res.status(200).json({ message: "user successfully created..." })
     } catch (error) {

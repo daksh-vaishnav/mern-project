@@ -4,8 +4,8 @@ import { getAllCourseController, updateCourseController, signInController, signU
 const adminRouter = Router();
 
 adminRouter
-    .post("/signin", signInController)
     .post("/signup", signUpController)
+    .post("/signin", signInController)
     .get("/course", getAllCourseController)
     .post("/course", createCourseController)
     .patch("/course", updateCourseController)
