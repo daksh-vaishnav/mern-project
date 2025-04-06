@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
 
 // Define User Schema
 const userSchema = new mongoose.Schema(
@@ -20,7 +19,7 @@ const userSchema = new mongoose.Schema(
         password: {
             type: String,
             required: [true, "Password is required"],
-            minlength: [6, "Password must be at least 6 characters"],
+            minlength: [8, "Password must be at least 8 characters"],
             select: false, // Prevent password from being returned in queries
         },
         role: {
@@ -36,45 +35,8 @@ const userSchema = new mongoose.Schema(
     { timestamps: true } // Automatically adds createdAt & updatedAt
 );
 
-// Hash password before saving
-userSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) return next();
-
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-});
-
-// Compare passwords (for login)
-userSchema.methods.comparePassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
-};
-
 // Create Indexes for Performance
-userSchema.index({ email: 1 });
+// no need for this becuase using unique constraints by default its has already created index on that column 
+// userSchema.index({ email: 1 });
 
 export const User = mongoose.model("User", userSchema);
-
-// const User = require("./models/user");
-
-// async function registerUser(name, email, password) {
-//   const newUser = new User({ name, email, password });
-//   await newUser.save();
-//   console.log("User registered successfully!");
-// }
-
-// registerUser("John Doe", "john@example.com", "securepassword");
-
-
-// async function loginUser(email, enteredPassword) {
-//     const user = await User.findOne({ email }).select("+password"); // Get password field
-//     if (!user) return console.log("User not found");
-  
-//     const isMatch = await user.comparePassword(enteredPassword);
-//     if (!isMatch) return console.log("Invalid password");
-  
-//     console.log("Login successful!");
-//   }
-  
-//   loginUser("john@example.com", "securepassword");
-  

@@ -27,6 +27,7 @@
   "imports": {
     "#root/*": "./*.js",
     "#src/*": "./src/*.js",
+    "#validators/*": "./src/validators/*.js",
     "#routes/*": "./src/routes/*.js",
     "#models/*": "./src/models/*.js",
     "#middlewares/*": "./src/middlewares/*.js",
