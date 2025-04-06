@@ -1,5 +1,29 @@
 import mongoose from 'mongoose';
 
+const chapterSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    thumbnailImage: {
+        type: String, // Assuming this is a URL
+        required: true
+    },
+    contents: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Content'
+    }],
+    isActive: {
+        type: Boolean,
+        default: true
+    }
+}, { timestamps: true });
+
 const courseSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -14,10 +38,7 @@ const courseSchema = new mongoose.Schema({
         type: String, // Assuming this is a URL
         required: true
     },
-    chapters: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Chapter'
-    }],
+    chapters: [chapterSchema],
     price: {
         type: Number,
         required: true,
