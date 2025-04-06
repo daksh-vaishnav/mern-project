@@ -9,6 +9,6 @@ userRouter
     .post("/signup", validate(signUpValidationSchema), signUpController)
     .post("/signin", validate(signInValidationSchema), signInController)
     .post("/enroll", enrollCourseController)
-    .get("/get-course", getAllCourseController)
+    .get("/get-all-course", getAllCourseController)
 
 export default userRouter;

@@ -1,6 +1,6 @@
 import { compareHashPassword, generateJWT, getHashPassword } from "#helpers/utils";
 import { User } from "#models/user";
-import { Error } from "mongoose";
+import { Course } from "#models/course";
 
 
 
@@ -39,6 +39,15 @@ export const enrollCourseController = (req, res) => {
     res.json({ message: "enroll course" })
 }
 
-export const getAllCourseController = (req, res) => {
-    res.json({ message: "get all course user" })
+export const getAllCourseController = async (req, res) => {
+
+    try {
+        const courses = await Course.find({ isActive: true }).select('-chapters -createdAt -updatedAt -isActive -__v');
+        res.status(200).json({ message: "get all course user", courses })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "something went wrong..." })
+    }
+
+
 }
