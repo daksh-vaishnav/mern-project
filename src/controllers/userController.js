@@ -1,6 +1,9 @@
 import { compareHashPassword, generateJWT, getHashPassword } from "#helpers/utils";
 import { User } from "#models/user";
 import { Course } from "#models/course";
+import { PurchaseCourse } from "#models/purchaseCourse";
+import { Coupon } from "#models/coupon";
+import mongoose from "mongoose";
 
 
 
@@ -35,8 +38,36 @@ export const signInController = async (req, res) => {
     }
 }
 
-export const enrollCourseController = (req, res) => {
-    res.json({ message: "enroll course" })
+export const enrollCourseController = async (req, res) => {
+    const { userId } = req.user
+    const { courseId, couponCode } = req.body
+    const purchaseDate = new Date()
+    try {
+        const course = await Course.findById(courseId);
+        const coursePrice = course.price
+        if (!course) {
+            return res.status(500).json({ message: "Invalid Course" })
+        }
+        const coupon = await Coupon.findOne({ couponCode })
+        let discount = 0;
+        if (coupon.type === 'flat' && coupon.minOrder < coursePrice) {
+            if (coupon.validFor === 'all' || coupon.selectedCourses.includes(courseId)) {
+                discount = coupon.discount
+            }
+        } else if (coupon.type === 'percentage' && coupon.minOrder < coursePrice) {
+            if (coupon.validFor === 'all' || coupon.selectedCourses.includes(courseId)) {
+                let calDiscount = (coupon.discount * coursePrice) / 100;
+                console.log({ calDiscount });
+                discount = calDiscount > coupon.maxDiscount ? coupon.maxDiscount : calDiscount
+            }
+        }
+
+        const userPurchase = await PurchaseCourse.create({ userId, courseId, pricePaid: parseInt(coursePrice - discount), couponCode: coupon._id, purchaseDate })
+        res.status(200).json({ message: "successfully enroll in course" })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "something went wrong" })
+    }
 }
 
 export const getAllCourseController = async (req, res) => {

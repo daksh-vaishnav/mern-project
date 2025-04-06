@@ -16,7 +16,7 @@ const purchaseCourseSchema = new mongoose.Schema({
         required: true,
         min: 0
     },
-    couponUsed: {
+    couponCode: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Coupon',
         default: null // Null if no coupon was used

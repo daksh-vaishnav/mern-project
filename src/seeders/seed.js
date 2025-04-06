@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
-import { Content } from '#models/content'; // Update path as needed
-import { Course } from '#models/course';   // Update path as needed
+import { Content } from '#models/content';
+import { Course } from '#models/course';
+import { Coupon } from '#models/coupon';
+import { getHashPassword } from '#helpers/utils';
+import { User } from '#models/user';
 
 const dummyContents = [
     {
@@ -98,6 +101,7 @@ const dummyContents = [
 
 const dummyCourses = [
     {
+        _id: new mongoose.Types.ObjectId(),
         title: "Full Stack Web Development",
         description: "Learn to build modern web applications using HTML, CSS, JavaScript, React, Node.js, and MongoDB.",
         thumbnailImage: "https://fastly.picsum.photos/id/866/536/354.jpg?hmac=tGofDTV7tl2rprappPzKFiZ9vDh5MKj39oa2D--gqhA",
@@ -119,6 +123,7 @@ const dummyCourses = [
         isActive: true
     },
     {
+        _id: new mongoose.Types.ObjectId(),
         title: "Introduction to Cybersecurity",
         description: "Understand the fundamentals of cybersecurity including threats, vulnerabilities, and protection mechanisms.",
         thumbnailImage: "https://fastly.picsum.photos/id/866/536/354.jpg?hmac=tGofDTV7tl2rprappPzKFiZ9vDh5MKj39oa2D--gqhA",
@@ -140,6 +145,7 @@ const dummyCourses = [
         isActive: true
     },
     {
+        _id: new mongoose.Types.ObjectId(),
         title: "Python for Data Science",
         description: "Dive into data science using Python. Learn about NumPy, Pandas, Matplotlib, and real-world data analysis.",
         thumbnailImage: "https://fastly.picsum.photos/id/866/536/354.jpg?hmac=tGofDTV7tl2rprappPzKFiZ9vDh5MKj39oa2D--gqhA",
@@ -155,15 +161,56 @@ const dummyCourses = [
     }
 ];
 
+const dummyCoupons = [
+    {
+        couponCode: 'FLAT10',
+        type: 'flat',
+        discount: 10,
+        minOrder: 50,
+        maxDiscount: 10,
+        validTill: new Date('2025-12-31'),
+        validFor: 'all',
+        selectedCourses: []
+    },
+    {
+        couponCode: 'NEW',
+        type: 'percentage',
+        discount: 50,
+        minOrder: 0,
+        maxDiscount: 50,
+        validTill: new Date('2025-06-30'),
+        validFor: 'all',
+        selectedCourses: [dummyCourses[0]._id]
+    }
+];
 
+const dummyUser = [
+    {
+        name: "Daksh Vaishnav",
+        email: "daksh@gmail.com",
+        password: await getHashPassword("Password@123"),
+        role: "user"
+    }
+];
 
 export const courseSeedData = async () => {
     try {
+
+        await User.deleteMany();
+        await User.insertMany(dummyUser);
+        console.log('User inserted!');
+
+        await Content.deleteMany();
         await Content.insertMany(dummyContents);
         console.log('Chapters inserted!');
 
+        await Course.deleteMany();
         await Course.insertMany(dummyCourses);
         console.log('Courses inserted!');
+
+        await Coupon.deleteMany();
+        await Coupon.insertMany(dummyCoupons);
+        console.log('Coupon inserted!');
 
     } catch (err) {
         console.error('Seeding error:', err);

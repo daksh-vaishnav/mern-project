@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import router from '#src/routes/index';
 import { connectDB } from '#src/config/db';
 import { errorHandler } from '#middlewares/errorHandler'
-import { courseSeedData } from '#src/seeders/course'
+import { authentication } from '#middlewares/authentication'
+import { courseSeedData } from '#src/seeders/seed'
 
 dotenv.config({})
 const app = express();
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
     res.send("hello world")
 })
 
-app.use("/api/v1", router)
+app.use("/api/v1", authentication, router)
 
 
 app.use(errorHandler);
