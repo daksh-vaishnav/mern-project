@@ -37,6 +37,14 @@ export const createCourseController = (req, res) => {
     res.json({ message: "admin create course success" })
 }
 
+export const addChapterToCourseController = (req, res) => {
+    res.json({ message: "admin create chapter success" })
+}
+
+export const addContentToChapterController = (req, res) => {
+    res.json({ message: "admin create content success" })
+}
+
 export const updateCourseController = (req, res) => {
     res.json({ message: "admin update course success" })
 }
