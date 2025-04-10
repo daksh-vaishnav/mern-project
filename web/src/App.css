@@ -10,6 +10,13 @@ body {
   padding: 0;
 }
 
+.font1 {
+  font-family: "Gelasio", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
 section {
   margin: 0 280px;
 }
@@ -17,7 +24,8 @@ section {
 .header {
   padding: 1.5rem 1.5rem .5rem;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
-
+  z-index: 10001;
+  position: sticky;
 }
 
 .logo {
@@ -44,6 +52,7 @@ section {
 .nav-item {
   font-size: .9rem;
   margin: 0 0.5rem;
+  cursor: pointer;
 }
 
 .nav-item-cart {
@@ -96,7 +105,7 @@ section {
 .search-header {
   height: 3rem;
   width: 90%;
-  border: 1px solid #303141;
+  border: 1px solid #738fa7;
   border-radius: 4rem;
   padding-left: 2rem;
 }
@@ -105,7 +114,6 @@ section {
 .hero-banner {
   width: 100%;
   height: auto;
-  z-index: -1;
 }
 
 .hero-container {
@@ -120,8 +128,22 @@ section {
   padding: 1rem 2rem;
   border-radius: 4px;
   width: 25%;
+  background-color: white;
 }
 
-.hero-text{
+.card h2 {
+  font-size: 2rem;
+}
+
+.hero-text {
   word-wrap: break-word;
+  color: #738fa7;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+}
+
+.hero-content {
+  margin: 2rem;
 }
