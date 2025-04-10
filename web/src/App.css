@@ -1,42 +1,127 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+html {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  margin: 0 280px;
+}
+
+.header {
+  padding: 1.5rem 1.5rem .5rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  width: 6rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo-left {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.logo-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-item {
+  font-size: .9rem;
+  margin: 0 0.5rem;
+}
+
+.nav-item-cart {
+  font-size: 2rem;
+}
+
+.nav-btn {
+  background-color: #6d28d2;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 .5rem;
+}
+
+.nav-outer-btn {
+  color: #6d28d2;
+  background-color: white;
+  border: 1px solid #6d28d2;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 .5rem;
+}
+
+.nav-lan-btn {
+  color: #6d28d2;
+  background-color: white;
+  border: 1px solid #6d28d2;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 .5rem;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.search-header {
+  height: 3rem;
+  width: 90%;
+  border: 1px solid #303141;
+  border-radius: 4rem;
+  padding-left: 2rem;
+}
+
+
+.hero-banner {
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.hero-container {
+  position: relative;
 }
 
 .card {
-  padding: 2em;
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  width: 25%;
 }
 
-.read-the-docs {
-  color: #888;
+.hero-text{
+  word-wrap: break-word;
 }
